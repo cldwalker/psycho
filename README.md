@@ -7,7 +7,7 @@ Usage
 =====
 
     # I know, I'm the only one who still uses rip
-    $ rip install psycho
+    $ rip install git://github.com/cldwalker/psycho.git
 
     # If somebody actually wants this as a gem, let me know
     # $ gem install psycho
