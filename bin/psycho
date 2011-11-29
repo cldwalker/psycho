@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+
+abort("Usage: psycho FILES") unless ARGV[0]
+
+ruby192 = Dir[File.expand_path("~/.rvm/rubies/ruby-1.9.2*")][0] or
+  abort "1.9.2 ruby not found"
+ruby192 << '/bin/ruby'
+
+ruby193 = Dir[File.expand_path("~/.rvm/rubies/ruby-1.9.3*")][0] or
+  abort "1.9.3 ruby not found"
+ruby193 << '/bin/ruby'
+
+temp_file = 'psycho.tmp'
+
+ARGV.each do |file|
+  cmd = "data = YAML.load_file('#{file}');
+   File.open('#{temp_file}', 'w') {|f| f.write data.to_json }"
+  system(ruby192, '-ryaml', '-rjson', '-e', cmd)
+
+
+  cmd = "data = JSON.load(File.read('#{temp_file}'));
+    File.open('#{file}', 'w') {|f| f.write data.to_yaml }"
+  system(ruby193, '-ryaml', '-rjson', '-e', cmd)
+end
+
+File.unlink temp_file
