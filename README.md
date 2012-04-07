@@ -31,3 +31,7 @@ Limitations
 * Assumes you use rvm for ruby versioning
 * Assumes you want the last alphabetically sorted ruby version
 * Don't like these assumptions? Pull request!
+
+TODO
+====
+* Fix symbol keys getting converted to strings
